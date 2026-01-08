@@ -6,8 +6,8 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,
-  basePath: '/prexis-turbines',
-  assetPrefix: '/prexis-turbines',
+  basePath: process.env.NODE_ENV === 'production' ? '/prexis-turbines' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/prexis-turbines' : '',
 }
 
 module.exports = nextConfig
