@@ -98,7 +98,7 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Stats */}
-          <div className="grid md:grid-cols-4 gap-6 mt-16">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-12 sm:mt-16">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -108,11 +108,11 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-8 h-8 text-yellow-600" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />
                 </div>
-                <div className="text-3xl font-bold text-slate-900 mb-2">{stat.value}</div>
-                <div className="text-slate-600">{stat.label}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1 sm:mb-2">{stat.value}</div>
+                <div className="text-sm sm:text-base text-slate-600">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -141,16 +141,14 @@ export default function AboutPage() {
           >
             <ImageCarousel 
               images={[
-                '/Prexis-Power-Plant.png',
-                '/Prexis-Tehnician.png',
                 '/Prexis-Maintenance-01.jpg',
-                '/Prexis-Transport.jpg',
-                '/Platform.png',
-                '/Prexis-web.png',
                 '/Prexis-Turbine-Engineer.jpg',
-                '/Enerflex_Products_Electric-Power_Canada-1.jpg'
+                '/Enerflex_Products_Electric-Power_Canada-1.jpg',
+                '/Platform.png',
+                '/Prexis-web.png'
               ]}
-              className="h-96 rounded-xl"
+              className="h-96"
+              objectFit="contain"
             />
           </motion.div>
         </div>
@@ -171,7 +169,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -182,13 +180,13 @@ export default function AboutPage() {
               >
                 <Card className="h-full card-hover border-slate-200">
                   <CardHeader>
-                    <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                      <service.icon className="w-6 h-6 text-yellow-600" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                      <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />
                     </div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                    <CardTitle className="text-lg sm:text-xl">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-slate-600">{service.description}</p>
+                    <p className="text-sm sm:text-base text-slate-600">{service.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>

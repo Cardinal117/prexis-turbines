@@ -114,25 +114,25 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 px-6">
         <div className="container mx-auto">
           <motion.div {...fadeInUp}>
             <motion.div 
-              className="inline-flex items-center px-4 py-2 bg-yellow-50 rounded-full mb-6"
+              className="inline-flex items-center px-3 sm:px-4 py-2 bg-yellow-50 rounded-full mb-4 sm:mb-6"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
             >
               <TurbineSpinner size="sm" className="mr-2" />
-              <span className="text-yellow-600 font-medium">Contact Us</span>
+              <span className="text-yellow-600 font-medium text-sm sm:text-base">Contact Us</span>
             </motion.div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
               Get in
               <span className="gradient-text"> Touch</span>
             </h1>
             
-            <p className="text-xl text-slate-600 mb-8 leading-relaxed max-w-4xl">
+            <p className="text-lg sm:text-xl text-slate-600 mb-6 sm:mb-8 leading-relaxed max-w-4xl px-2">
               Ready to transform your energy solutions? Our expert team is here to help you find the perfect 
               power generation solution for your needs. Reach out to us today for a consultation.
             </p>
@@ -143,7 +143,7 @@ export default function ContactPage() {
       {/* Contact Information */}
       <section className="py-20 px-6 bg-slate-50">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {contactInfo.map((info, index) => (
               <motion.div
                 key={info.title}
@@ -154,14 +154,14 @@ export default function ContactPage() {
               >
                 <Card className="h-full card-hover border-slate-200">
                   <CardHeader className="text-center">
-                    <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <info.icon className="w-8 h-8 text-yellow-600" />
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                      <info.icon className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />
                     </div>
-                    <CardTitle className="text-xl">{info.title}</CardTitle>
+                    <CardTitle className="text-lg sm:text-xl">{info.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="text-center">
                     {info.details.map((detail, detailIndex) => (
-                      <p key={detailIndex} className="text-slate-600 mb-2">
+                      <p key={detailIndex} className="text-sm sm:text-base text-slate-600 mb-2">
                         {detail}
                       </p>
                     ))}
@@ -176,20 +176,20 @@ export default function ContactPage() {
       {/* Contact Form & Departments */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="p-8">
+              <Card className="p-4 sm:p-8">
                 <CardHeader className="px-0">
-                  <CardTitle className="text-3xl text-slate-900">Send Us a Message</CardTitle>
+                  <CardTitle className="text-2xl sm:text-3xl text-slate-900">Send Us a Message</CardTitle>
                 </CardHeader>
                 <CardContent className="px-0">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <label className="block text-sm font-medium text-slate-700 mb-2">
                           Name *
@@ -200,7 +200,7 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                          className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-sm sm:text-base"
                         />
                       </div>
                       <div>

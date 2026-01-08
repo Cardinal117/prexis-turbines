@@ -11,6 +11,7 @@ interface CarouselProps {
   interval?: number
   className?: string
   aspectRatio?: string // e.g., "16/9", "4/3", "1/1"
+  objectFit?: 'cover' | 'contain' // Allow choosing object-fit behavior
 }
 
 export function ImageCarousel({ 
@@ -18,7 +19,8 @@ export function ImageCarousel({
   autoPlay = true, 
   interval = 5000, 
   className = '',
-  aspectRatio = "16/9"
+  aspectRatio = "16/9",
+  objectFit = "cover"
 }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
@@ -118,7 +120,7 @@ export function ImageCarousel({
   return (
     <div 
       ref={containerRef}
-      className={`relative w-full overflow-hidden rounded-lg bg-black/5 ${className}`}
+      className={`relative w-full max-w-4xl lg:max-w-5xl mx-auto overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm ${className}`}
       style={{ aspectRatio }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -137,14 +139,13 @@ export function ImageCarousel({
             <img
               src={images[currentIndex]}
               alt={`Slide ${currentIndex + 1}`}
-              className="w-full h-full object-contain"
+              className={`w-full h-full object-${objectFit} rounded-2xl`}
               loading={currentIndex === 0 ? "eager" : "lazy"}
               decoding="async"
               style={{
-                maxWidth: '100%',
-                maxHeight: '100%',
-                margin: '0 auto',
-                display: 'block'
+                width: '100%',
+                height: '100%',
+                objectFit: objectFit
               }}
             />
           </motion.div>
@@ -156,8 +157,11 @@ export function ImageCarousel({
             <img
               src={images[(currentIndex + 1) % images.length]}
               alt=""
-              className="w-full h-full object-contain"
+              className={`w-full h-full object-${objectFit}`}
               loading="lazy"
+              style={{
+                objectFit: objectFit
+              }}
             />
           </div>
         )}
@@ -168,28 +172,28 @@ export function ImageCarousel({
           <Button
             variant="outline"
             size="icon"
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg w-8 h-8 sm:w-10 sm:h-10"
             onClick={prevSlide}
             aria-label="Previous slide"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
           
           <Button
             variant="outline"
             size="icon"
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg w-8 h-8 sm:w-10 sm:h-10"
             onClick={nextSlide}
             aria-label="Next slide"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
           
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+          <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2">
             {images.map((_, index) => (
               <button
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex 
                     ? 'bg-white scale-110 shadow-lg' 
                     : 'bg-white/50 hover:bg-white/80'
@@ -202,25 +206,25 @@ export function ImageCarousel({
           </div>
           
           {autoPlay && (
-            <div className="absolute top-4 right-4">
+            <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
               <Button
                 variant="outline"
                 size="icon"
                 onClick={() => setIsPaused(!isPaused)}
-                className="bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg"
+                className="bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg w-6 h-6 sm:w-8 sm:h-8"
                 aria-label={isPaused ? "Resume slideshow" : "Pause slideshow"}
               >
                 {isPaused ? (
-                  <Play className="h-4 w-4" />
+                  <Play className="h-2 w-2 sm:h-4 sm:w-4" />
                 ) : (
-                  <Pause className="h-4 w-4" />
+                  <Pause className="h-2 w-2 sm:h-4 sm:w-4" />
                 )}
               </Button>
             </div>
           )}
           
           {/* Optional: Show current slide number */}
-          <div className="absolute top-4 left-4 bg-black/50 text-white text-sm px-2 py-1 rounded-full backdrop-blur-sm">
+          <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-black/50 text-white text-xs sm:text-sm px-2 py-1 rounded-full backdrop-blur-sm">
             {currentIndex + 1} / {images.length}
           </div>
         </>

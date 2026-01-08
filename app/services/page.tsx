@@ -78,30 +78,30 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 px-6">
         <div className="container mx-auto">
           <motion.div {...fadeInUp}>
             <motion.div 
-              className="inline-flex items-center px-4 py-2 bg-yellow-50 rounded-full mb-6"
+              className="inline-flex items-center px-3 sm:px-4 py-2 bg-yellow-50 rounded-full mb-4 sm:mb-6"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
             >
               <TurbineSpinner size="sm" className="mr-2" />
-              <span className="text-yellow-600 font-medium">Our Services</span>
+              <span className="text-yellow-600 font-medium text-sm sm:text-base">Our Services</span>
             </motion.div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
               Comprehensive
               <span className="gradient-text"> Energy Solutions</span>
             </h1>
             
-            <p className="text-xl text-slate-600 mb-8 leading-relaxed max-w-4xl">
+            <p className="text-lg sm:text-xl text-slate-600 mb-6 sm:mb-8 leading-relaxed max-w-4xl px-2">
               Prexis is 100% focused and committed to delivering innovative and sustainable energy solutions to our customers. 
               From gas turbines to hydropower, we provide the full spectrum of energy generation technologies.
             </p>
             
-            <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8">
+            <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black px-6 sm:px-8">
               Get Started
             </Button>
           </motion.div>
@@ -111,7 +111,7 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <section className="py-20 px-6 bg-slate-50">
         <div className="container mx-auto">
-          <div className="space-y-20">
+          <div className="space-y-16 sm:space-y-20">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -119,23 +119,23 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${
+                className={`grid lg:grid-cols-2 gap-8 sm:gap-12 items-center ${
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
                 <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                      <service.icon className="w-6 h-6 text-red-600" />
+                  <div className="flex items-center mb-4 sm:mb-6">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
+                      <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />
                     </div>
-                    <h2 className="text-3xl font-bold text-slate-900">{service.title}</h2>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">{service.title}</h2>
                   </div>
                   
-                  <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                  <p className="text-base sm:text-lg text-slate-600 mb-4 sm:mb-6 leading-relaxed">
                     {service.description}
                   </p>
                   
-                  <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                     {service.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3"></div>

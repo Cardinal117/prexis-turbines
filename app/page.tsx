@@ -61,7 +61,7 @@ export default function Home() {
               
               <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
                 Advanced
-                <span className="gradient-text"> Energy Solutions</span>
+                <span className="gradient-text"> Energy Solutions </span>
                 for Africa
               </h1>
               
@@ -71,31 +71,31 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8">
-                  Explore Solutions
+                <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8" asChild>
+                  <a href="/services">Explore Solutions</a>
                 </Button>
-                <Button size="lg" variant="outline" className="border-yellow-500 text-yellow-600 hover:bg-yellow-50">
-                  View Profile
+                <Button size="lg" variant="outline" className="border-yellow-500 text-yellow-600 hover:bg-yellow-50" asChild>
+                  <a href="/about">View Profile</a>
                 </Button>
               </div>
               
               <motion.div 
-                className="flex gap-8 mt-12"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-8 sm:mt-12"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
               >
-                <div>
-                  <div className="text-3xl font-bold text-slate-900">35+</div>
-                  <div className="text-slate-600">Years Experience</div>
+                <div className="text-center sm:text-left">
+                  <div className="text-2xl sm:text-3xl font-bold text-slate-900">35+</div>
+                  <div className="text-sm sm:text-base text-slate-600">Years Experience</div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-slate-900">1.5-10</div>
-                  <div className="text-slate-600">MW Power Solutions</div>
+                <div className="text-center sm:text-left">
+                  <div className="text-2xl sm:text-3xl font-bold text-slate-900">1.5-10</div>
+                  <div className="text-sm sm:text-base text-slate-600">MW Power Solutions</div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-slate-900">100%</div>
-                  <div className="text-slate-600">African Manufactured</div>
+                <div className="text-center sm:text-left">
+                  <div className="text-2xl sm:text-3xl font-bold text-slate-900">100%</div>
+                  <div className="text-sm sm:text-base text-slate-600">African Manufactured</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -107,37 +107,35 @@ export default function Home() {
               transition={{ delay: 0.3 }}
             >
               <div className="relative z-10">
-                <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl p-8 shadow-2xl float-animation">
-                  <div className="mb-6">
+                <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl p-4 sm:p-8 shadow-2xl float-animation">
+                  <div className="mb-4 sm:mb-6">
                     <ImageCarousel 
                       images={[
                         '/Prexis-Gas-Turbine-Generator.jpg',
                         '/Prexis-P18-Service-2.jpg',
                         '/Prexis-Power-Plant.png',
-                        '/Prexis-Tehnician.png',
-                        '/Prexis-web.png',
-                        '/Prexis-Turbine-Engineer.jpg',
-                        '/Enerflex_Products_Electric-Power_Canada-1.jpg'
+                        '/Prexis-Transport.jpg',
+                        '/Prexis-web.png'
                       ]}
-                      className="h-64"
+                      className="h-48 sm:h-64"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-                      <Factory className="w-8 h-8 text-white mb-2" />
-                      <div className="text-white font-semibold">Gas Turbines</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div className="bg-white/10 backdrop-blur rounded-xl p-3 sm:p-4">
+                      <Factory className="w-6 h-6 sm:w-8 sm:h-8 text-white mb-2" />
+                      <div className="text-white font-semibold text-sm sm:text-base">Gas Turbines</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-                      <Wind className="w-8 h-8 text-white mb-2" />
-                      <div className="text-white font-semibold">Wind Turbines</div>
+                    <div className="bg-white/10 backdrop-blur rounded-xl p-3 sm:p-4">
+                      <Wind className="w-6 h-6 sm:w-8 sm:h-8 text-white mb-2" />
+                      <div className="text-white font-semibold text-sm sm:text-base">Wind Turbines</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-                      <Droplets className="w-8 h-8 text-white mb-2" />
-                      <div className="text-white font-semibold">Hydro Turbines</div>
+                    <div className="bg-white/10 backdrop-blur rounded-xl p-3 sm:p-4">
+                      <Droplets className="w-6 h-6 sm:w-8 sm:h-8 text-white mb-2" />
+                      <div className="text-white font-semibold text-sm sm:text-base">Hydro Turbines</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-                      <Gauge className="w-8 h-8 text-white mb-2" />
-                      <div className="text-white font-semibold">Steam Turbines</div>
+                    <div className="bg-white/10 backdrop-blur rounded-xl p-3 sm:p-4">
+                      <Gauge className="w-6 h-6 sm:w-8 sm:h-8 text-white mb-2" />
+                      <div className="text-white font-semibold text-sm sm:text-base">Steam Turbines</div>
                     </div>
                   </div>
                 </div>
@@ -159,16 +157,16 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
               Our Capabilities
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto px-4">
               Complete gas turbine industry chain from R&D and design to manufacturing and service
             </p>
           </motion.div>
           
           <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
