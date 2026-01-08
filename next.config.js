@@ -5,8 +5,8 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,
-  basePath: '/prexis-turbines',
-  assetPrefix: '/prexis-turbines',
+  basePath: '',
+  assetPrefix: '',
 }
 
 module.exports = nextConfig
