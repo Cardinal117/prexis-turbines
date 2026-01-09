@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
+import { withBasePath } from '@/lib/paths'
 
 interface NavbarProps {
   currentPage?: string
@@ -24,10 +25,13 @@ export function Navbar({ currentPage }: NavbarProps) {
   ]
 
   const isActive = (href: string) => {
+    const basePath = process.env.NODE_ENV === 'production' ? '/prexis-turbines' : ''
+    const currentPath = pathname.replace(basePath, '') || '/'
+    
     if (href === '/') {
-      return pathname === '/'
+      return currentPath === '/'
     }
-    return pathname.startsWith(href)
+    return currentPath.startsWith(href)
   }
 
   const toggleMobileMenu = () => {
@@ -43,14 +47,14 @@ export function Navbar({ currentPage }: NavbarProps) {
       >
         <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <Link href="/">
+            <Link href={withBasePath('/')}>
               <motion.div 
                 className="flex items-center"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
                 <Image
-                  src="/Logo.png"
+                  src={withBasePath('/Logo.png')}
                   alt="Prexis Turbines"
                   width={280}
                   height={88}
@@ -62,20 +66,21 @@ export function Navbar({ currentPage }: NavbarProps) {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
               {navItems.map((item) => (
-                <motion.a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  href={withBasePath(item.href)}
                   className={`transition-colors ${
                     isActive(item.href) 
                       ? 'text-yellow-600 font-semibold' 
                       : 'text-slate-600 hover:text-yellow-600'
                   }`}
-                  whileHover={{ y: -2 }}
                 >
-                  {item.name}
-                </motion.a>
+                  <motion.span whileHover={{ y: -2 }}>
+                    {item.name}
+                  </motion.span>
+                </Link>
               ))}
-              <Link href="/contact">
+              <Link href={withBasePath('/contact')}>
                 <Button className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 sm:px-6 text-sm sm:text-base">
                   Get Quote
                 </Button>
@@ -98,11 +103,10 @@ export function Navbar({ currentPage }: NavbarProps) {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu - MOVED OUTSIDE THE NAV */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -111,7 +115,6 @@ export function Navbar({ currentPage }: NavbarProps) {
               onClick={() => setIsMobileMenuOpen(false)}
             />
             
-            {/* Menu panel */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -135,7 +138,7 @@ export function Navbar({ currentPage }: NavbarProps) {
                   {navItems.map((item) => (
                     <Link
                       key={item.name}
-                      href={item.href}
+                      href={withBasePath(item.href)}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`block px-4 py-3 rounded-lg transition-colors ${
                         isActive(item.href) 
@@ -149,7 +152,7 @@ export function Navbar({ currentPage }: NavbarProps) {
                   
                   <div className="pt-4 mt-4 border-t border-slate-200">
                     <Link
-                      href="/contact"
+                      href={withBasePath('/contact')}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block"
                     >

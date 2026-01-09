@@ -18,6 +18,7 @@ import {
   Users,
   Headphones
 } from 'lucide-react'
+import { withBasePath } from '@/lib/paths'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -380,10 +381,10 @@ export default function ContactPage() {
             <div>
               <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-slate-400">
-                <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
-                <li><a href="/about" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="/services" className="hover:text-white transition-colors">Services</a></li>
-                <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a href={withBasePath('/')} className="hover:text-white transition-colors">Home</a></li>
+                <li><a href={withBasePath('/about')} className="hover:text-white transition-colors">About</a></li>
+                <li><a href={withBasePath('/services')} className="hover:text-white transition-colors">Services</a></li>
+                <li><a href={withBasePath('/contact')} className="hover:text-white transition-colors">Contact</a></li>
               </ul>
             </div>
             <div>

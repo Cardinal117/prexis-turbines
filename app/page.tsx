@@ -9,14 +9,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ImageCarousel } from '@/components/ui/carousel'
 import { TurbineSpinner } from '@/components/ui/turbine-spinner'
 import { AnalyticsDashboard } from '@/components/ui/analytics-dashboard'
-import { 
-  Zap, 
-  Factory, 
-  Wind, 
-  Droplets, 
-  Gauge, 
-  Cpu, 
-  Shield, 
+import {
+  Zap,
+  Factory,
+  Wind,
+  Droplets,
+  Gauge,
+  Cpu,
+  Shield,
   TrendingUp,
   Phone,
   Mail,
@@ -24,6 +24,7 @@ import {
   Target,
   Globe
 } from 'lucide-react'
+import { withBasePath } from '@/lib/paths'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -49,7 +50,7 @@ export default function Home() {
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeInUp}>
-              <motion.div 
+              <motion.div
                 className="inline-flex items-center px-4 py-2 bg-yellow-50 rounded-full mb-6"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -58,28 +59,28 @@ export default function Home() {
                 <TurbineSpinner size="sm" className="mr-2" />
                 <span className="text-yellow-600 font-medium">Africa's Leading Gas Turbine Manufacturer</span>
               </motion.div>
-              
+
               <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
                 Advanced
                 <span className="gradient-text"> Energy Solutions </span>
                 for Africa
               </h1>
-              
+
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                Prexis Turbines develops and manufactures advanced, clean, low-emissions gas turbine generating sets. 
+                Prexis Turbines develops and manufactures advanced, clean, low-emissions gas turbine generating sets.
                 The only gas turbine manufacturer in Africa with 35 years of engineering excellence.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8" asChild>
-                  <a href="/services">Explore Solutions</a>
+                  <a href={withBasePath('/services')}>Explore Solutions</a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-yellow-500 text-yellow-600 hover:bg-yellow-50" asChild>
-                  <a href="/about">View Profile</a>
+                  <a href={withBasePath('/about')}>View Profile</a>
                 </Button>
               </div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-8 sm:mt-12"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -99,8 +100,8 @@ export default function Home() {
                 </div>
               </motion.div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -109,13 +110,13 @@ export default function Home() {
               <div className="relative z-10">
                 <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl p-4 sm:p-8 shadow-2xl float-animation">
                   <div className="mb-4 sm:mb-6">
-                    <ImageCarousel 
+                    <ImageCarousel
                       images={[
-                        '/Prexis-Gas-Turbine-Generator.jpg',
-                        '/Prexis-P18-Service-2.jpg',
-                        '/Prexis-Power-Plant.png',
-                        '/Prexis-Transport.jpg',
-                        '/Prexis-web.png'
+                        withBasePath('/Prexis-Maintenance-01.jpg'),
+                        withBasePath('/Prexis-Turbine-Engineer.jpg'),
+                        withBasePath('/Enerflex_Products_Electric-Power_Canada-1.jpg'),
+                        withBasePath('/Platform.png'),
+                        withBasePath('/Prexis-web.png')
                       ]}
                       className="h-48 sm:h-64"
                     />
@@ -140,7 +141,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Background decoration */}
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-600/20 rounded-2xl blur-3xl"></div>
             </motion.div>
@@ -151,7 +152,7 @@ export default function Home() {
       {/* Capabilities Section */}
       <section className="py-20 px-6 bg-slate-50">
         <div className="container mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -164,8 +165,8 @@ export default function Home() {
               Complete gas turbine industry chain from R&D and design to manufacturing and service
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
             variants={staggerContainer}
             initial="initial"
@@ -204,8 +205,8 @@ export default function Home() {
                 description: "Complete generator sets for reliable electricity production."
               }
             ].map((capability, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -233,7 +234,7 @@ export default function Home() {
       {/* Key Services Section */}
       <section className="py-20 px-6 bg-slate-50">
         <div className="container mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -246,7 +247,7 @@ export default function Home() {
               Comprehensive energy solutions from assessment to implementation
             </p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -310,7 +311,7 @@ export default function Home() {
       {/* Analytics Dashboard */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -323,7 +324,7 @@ export default function Home() {
               Track record of excellence in energy solutions across Africa
             </p>
           </motion.div>
-          
+
           <AnalyticsDashboard />
         </div>
       </section>
@@ -342,12 +343,12 @@ export default function Home() {
                 <span className="gradient-text"> Clean Energy</span>
               </h2>
               <p className="text-lg text-slate-600 mb-6">
-                Prexis is helping to create a renewable energy future for electricity generation. 
-                Our flexible industrial gas turbine power plants are already capable of using completely 
+                Prexis is helping to create a renewable energy future for electricity generation.
+                Our flexible industrial gas turbine power plants are already capable of using completely
                 synthetic and carbon-neutral fuels.
               </p>
               <p className="text-lg text-slate-600 mb-8">
-                They are also capable of combusting hydrogen/natural gas blends with up to 40% hydrogen – 
+                They are also capable of combusting hydrogen/natural gas blends with up to 40% hydrogen –
                 and we're working towards an industrial gas turbine power plant concept for pure hydrogen operations.
               </p>
               <div className="grid grid-cols-2 gap-6">
@@ -361,7 +362,7 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -411,7 +412,7 @@ export default function Home() {
               Contact us to discuss your energy requirements
             </p>
           </motion.div>
-          
+
           <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -430,7 +431,7 @@ export default function Home() {
                 Johannesburg
               </p>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -447,7 +448,7 @@ export default function Home() {
                 +27 11 123 4568
               </p>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
