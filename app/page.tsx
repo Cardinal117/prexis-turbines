@@ -24,7 +24,6 @@ import {
   Target,
   Globe
 } from 'lucide-react'
-import { withBasePath } from '@/lib/paths'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -73,10 +72,10 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8" asChild>
-                  <a href={withBasePath('/services')}>Explore Solutions</a>
+                  <a href='/services'>Explore Solutions</a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-yellow-500 text-yellow-600 hover:bg-yellow-50" asChild>
-                  <a href={withBasePath('/about')}>View Profile</a>
+                  <a href='/about'>View Profile</a>
                 </Button>
               </div>
 

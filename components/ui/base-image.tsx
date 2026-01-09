@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { withBasePath } from '@/lib/paths'
 
 interface BaseImageProps {
   src: string
@@ -13,7 +12,7 @@ interface BaseImageProps {
 export function BaseImage({ src, alt, ...props }: BaseImageProps) {
   return (
     <Image
-      src={withBasePath(src)}
+      src={src}
       alt={alt}
       {...props}
     />

@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
 import { Button } from './button'
-import { withBasePath } from '@/lib/paths'
 
 interface CarouselProps {
   images: string[]
@@ -63,10 +62,9 @@ export function ImageCarousel({
 
     window.addEventListener('resize', handleResize)
 
-    // Also update size when images load - FIXED with withBasePath
     const imagesToLoad = images.map(src => {
       const img = new Image()
-      img.src = withBasePath(src)  // ✅ FIXED: Added withBasePath
+      img.src = src
       img.onload = updateContainerSize
       return img
     })
@@ -138,7 +136,7 @@ export function ImageCarousel({
             transition={{ duration: 0.3 }}
           >
             <img
-              src={withBasePath(images[currentIndex])}  // ✅ Already correct
+              src={images[currentIndex]}
               alt={`Slide ${currentIndex + 1}`}
               className={`w-full h-full object-${objectFit} rounded-2xl`}
               loading={currentIndex === 0 ? "eager" : "lazy"}
@@ -156,7 +154,7 @@ export function ImageCarousel({
         {images.length > 1 && (
           <div className="absolute inset-0 pointer-events-none opacity-0" aria-hidden="true">
             <img
-              src={withBasePath(images[(currentIndex + 1) % images.length])}  // ✅ FIXED: Added withBasePath
+              src={images[(currentIndex + 1) % images.length]}
               alt=""
               className={`w-full h-full object-${objectFit}`}
               loading="lazy"

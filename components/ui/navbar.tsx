@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import { withBasePath, getBasePath } from '@/lib/paths'
+import { getBasePath } from '@/lib/paths'
 
 interface NavbarProps {
   currentPage?: string
@@ -47,14 +47,14 @@ export function Navbar({ currentPage }: NavbarProps) {
       >
         <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <Link href={withBasePath('/')}>
+            <Link href='/'>
               <motion.div 
                 className="flex items-center"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
                 <Image
-                  src={withBasePath('/Logo.png')}
+                  src='/Logo.png'
                   alt="Prexis Turbines"
                   width={280}
                   height={88}
@@ -68,7 +68,7 @@ export function Navbar({ currentPage }: NavbarProps) {
               {navItems.map((item) => (
                 <Link
                   key={item.name}
-                  href={withBasePath(item.href)}
+                  href={item.href}
                   className={`transition-colors ${
                     isActive(item.href) 
                       ? 'text-yellow-600 font-semibold' 
@@ -80,7 +80,7 @@ export function Navbar({ currentPage }: NavbarProps) {
                   </motion.span>
                 </Link>
               ))}
-              <Link href={withBasePath('/contact')}>
+              <Link href='/contact'>
                 <Button className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 sm:px-6 text-sm sm:text-base">
                   Get Quote
                 </Button>
@@ -138,7 +138,7 @@ export function Navbar({ currentPage }: NavbarProps) {
                   {navItems.map((item) => (
                     <Link
                       key={item.name}
-                      href={withBasePath(item.href)}
+                      href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`block px-4 py-3 rounded-lg transition-colors ${
                         isActive(item.href) 
@@ -152,7 +152,7 @@ export function Navbar({ currentPage }: NavbarProps) {
                   
                   <div className="pt-4 mt-4 border-t border-slate-200">
                     <Link
-                      href={withBasePath('/contact')}
+                      href='/contact'
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block"
                     >
