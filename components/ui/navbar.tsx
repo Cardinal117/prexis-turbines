@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import { withBasePath } from '@/lib/paths'
+import { withBasePath, getBasePath } from '@/lib/paths'
 
 interface NavbarProps {
   currentPage?: string
@@ -16,6 +16,9 @@ interface NavbarProps {
 export function Navbar({ currentPage }: NavbarProps) {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  
+  const basePath = getBasePath()
+  const currentPath = pathname.replace(basePath, '') || '/'
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -25,13 +28,10 @@ export function Navbar({ currentPage }: NavbarProps) {
   ]
 
   const isActive = (href: string) => {
-    const basePath = process.env.NODE_ENV === 'production' ? '/prexis-turbines' : ''
-    const currentPath = pathname.replace(basePath, '') || '/'
-    
     if (href === '/') {
       return currentPath === '/'
     }
-    return currentPath.startsWith(href)
+    return currentPath === href || currentPath.startsWith(href + '/')
   }
 
   const toggleMobileMenu = () => {

@@ -2,16 +2,12 @@
 const nextConfig = {
   images: {
     domains: ['localhost', 'cardinal117.github.io'],
-    unoptimized: true, // Required for static export
+    unoptimized: true,
   },
   output: 'export',
-  trailingSlash: true, // This is good for GitHub Pages
+  trailingSlash: true,
   basePath: process.env.NODE_ENV === 'production' ? '/prexis-turbines' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/prexis-turbines/' : '', // Note trailing slash
-  
-  // Optional: Add these for better compatibility
-  reactStrictMode: true,
-  swcMinify: true,
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/prexis-turbines' : '',
 }
 
 module.exports = nextConfig
