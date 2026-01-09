@@ -82,6 +82,10 @@ jspm_packages/
 tmp/
 temp/
 
+# Next.js cache and pack files
+.next/cache/
+*.pack
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

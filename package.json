@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "clean": "if exist .next\\cache rd /s /q .next\\cache",
     "deploy": "npx wrangler pages deploy .next --project-name=prexis-turbines"
   },
   "dependencies": {

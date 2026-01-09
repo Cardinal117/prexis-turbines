@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "exclude": [
+    "/cache/*",
+    "/.next/cache/*"
+  ]
+}
