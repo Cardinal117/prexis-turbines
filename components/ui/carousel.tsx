@@ -4,20 +4,21 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
 import { Button } from './button'
+import { withBasePath } from '@/lib/paths'
 
 interface CarouselProps {
   images: string[]
   autoPlay?: boolean
   interval?: number
   className?: string
-  aspectRatio?: string // e.g., "16/9", "4/3", "1/1"
-  objectFit?: 'cover' | 'contain' // Allow choosing object-fit behavior
+  aspectRatio?: string
+  objectFit?: 'cover' | 'contain'
 }
 
-export function ImageCarousel({ 
-  images, 
-  autoPlay = true, 
-  interval = 5000, 
+export function ImageCarousel({
+  images,
+  autoPlay = true,
+  interval = 5000,
   className = '',
   aspectRatio = "16/9",
   objectFit = "cover"
@@ -52,7 +53,7 @@ export function ImageCarousel({
   // Initialize and update container size
   useEffect(() => {
     updateContainerSize()
-    
+
     const handleResize = () => {
       if (resizeTimeoutRef.current) {
         clearTimeout(resizeTimeoutRef.current)
@@ -61,11 +62,11 @@ export function ImageCarousel({
     }
 
     window.addEventListener('resize', handleResize)
-    
-    // Also update size when images load
+
+    // Also update size when images load - FIXED with withBasePath
     const imagesToLoad = images.map(src => {
       const img = new Image()
-      img.src = src
+      img.src = withBasePath(src)  // ✅ FIXED: Added withBasePath
       img.onload = updateContainerSize
       return img
     })
@@ -84,7 +85,7 @@ export function ImageCarousel({
       if (intervalRef.current) {
         clearInterval(intervalRef.current)
       }
-      
+
       intervalRef.current = setInterval(nextSlide, interval)
     }
 
@@ -101,14 +102,14 @@ export function ImageCarousel({
       const timeout = setTimeout(() => {
         setIsPaused(false)
       }, interval * 2)
-      
+
       return () => clearTimeout(timeout)
     }
   }, [currentIndex, autoPlay, isPaused, interval])
 
   if (!images || images.length === 0) {
     return (
-      <div 
+      <div
         className={`relative w-full flex items-center justify-center bg-gray-100 rounded-lg ${className}`}
         style={{ aspectRatio }}
       >
@@ -118,7 +119,7 @@ export function ImageCarousel({
   }
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`relative w-full max-w-4xl lg:max-w-5xl mx-auto overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm ${className}`}
       style={{ aspectRatio }}
@@ -137,7 +138,7 @@ export function ImageCarousel({
             transition={{ duration: 0.3 }}
           >
             <img
-              src={images[currentIndex]}
+              src={withBasePath(images[currentIndex])}  // ✅ Already correct
               alt={`Slide ${currentIndex + 1}`}
               className={`w-full h-full object-${objectFit} rounded-2xl`}
               loading={currentIndex === 0 ? "eager" : "lazy"}
@@ -151,11 +152,11 @@ export function ImageCarousel({
           </motion.div>
         </AnimatePresence>
 
-        {/* Preload next image to prevent flicker */}
+        {/* Preload next image to prevent flicker - FIXED */}
         {images.length > 1 && (
           <div className="absolute inset-0 pointer-events-none opacity-0" aria-hidden="true">
             <img
-              src={images[(currentIndex + 1) % images.length]}
+              src={withBasePath(images[(currentIndex + 1) % images.length])}  // ✅ FIXED: Added withBasePath
               alt=""
               className={`w-full h-full object-${objectFit}`}
               loading="lazy"
@@ -166,7 +167,7 @@ export function ImageCarousel({
           </div>
         )}
       </div>
-      
+
       {images.length > 1 && (
         <>
           <Button
@@ -178,7 +179,7 @@ export function ImageCarousel({
           >
             <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
-          
+
           <Button
             variant="outline"
             size="icon"
@@ -188,23 +189,22 @@ export function ImageCarousel({
           >
             <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
-          
+
           <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2">
             {images.map((_, index) => (
               <button
                 key={index}
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-white scale-110 shadow-lg' 
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${index === currentIndex
+                    ? 'bg-white scale-110 shadow-lg'
                     : 'bg-white/50 hover:bg-white/80'
-                }`}
+                  }`}
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to slide ${index + 1}`}
                 aria-current={index === currentIndex}
               />
             ))}
           </div>
-          
+
           {autoPlay && (
             <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
               <Button
@@ -222,11 +222,6 @@ export function ImageCarousel({
               </Button>
             </div>
           )}
-          
-          {/* Optional: Show current slide number */}
-          <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-black/50 text-white text-xs sm:text-sm px-2 py-1 rounded-full backdrop-blur-sm">
-            {currentIndex + 1} / {images.length}
-          </div>
         </>
       )}
     </div>

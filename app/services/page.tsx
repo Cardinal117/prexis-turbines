@@ -158,8 +158,8 @@ export default function ServicesPage() {
                     transition={{ delay: 0.2 }}
                   >
                     <div className="rounded-2xl overflow-hidden shadow-xl">
-                      <img
-                        src={service.image}
+                      <Image
+                        src={withBasePath(service.image)}
                         alt={service.title}
                         className="w-full h-80 object-cover"
                       />

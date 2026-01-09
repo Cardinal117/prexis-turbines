@@ -112,11 +112,11 @@ export default function Home() {
                   <div className="mb-4 sm:mb-6">
                     <ImageCarousel
                       images={[
-                        withBasePath('/Prexis-Maintenance-01.jpg'),
-                        withBasePath('/Prexis-Turbine-Engineer.jpg'),
-                        withBasePath('/Enerflex_Products_Electric-Power_Canada-1.jpg'),
-                        withBasePath('/Platform.png'),
-                        withBasePath('/Prexis-web.png')
+                        '/Prexis-Maintenance-01.jpg',
+                        '/Prexis-Turbine-Engineer.jpg',
+                        '/Enerflex_Products_Electric-Power_Canada-1.jpg',
+                        '/Platform.png',
+                        '/Prexis-web.png'
                       ]}
                       className="h-48 sm:h-64"
                     />

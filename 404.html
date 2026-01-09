@@ -4,18 +4,46 @@
     <meta charset="utf-8">
     <title>Prexis Turbines</title>
     <script>
-        // Redirect to index.html for SPA routing
-        var path = window.location.pathname;
+        // Single Page Apps for GitHub Pages
+        // MIT License - https://github.com/rafgraph/spa-github-pages
+        
+        (function(l) {
+            if (l.search) {
+                var q = {};
+                l.search.slice(1).split('&').forEach(function(v) {
+                    var a = v.split('=');
+                    q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+                });
+                
+                if (q.p !== undefined) {
+                    window.history.replaceState(null, null,
+                        l.pathname.slice(0, -1) + (q.p || '') +
+                        (q.q ? ('?' + q.q) : '') +
+                        l.hash
+                    );
+                }
+            }
+        }(window.location))
+        
+        // Redirect to the SPA
+        var segmentCount = 0;
+        var l = window.location;
         var base = '/prexis-turbines';
         
-        // If we're not at the root
-        if (path !== '/' && path !== base + '/') {
-            // Redirect to index.html
-            window.location.href = base + '/index.html';
+        // If we're not already at the SPA
+        if (l.pathname.indexOf(base) !== 0) {
+            var redirect = base + '/index.html';
+            
+            // Preserve the path we were trying to access
+            if (l.pathname !== '/') {
+                redirect += '?p=' + encodeURIComponent(l.pathname.replace(/^\//, ''));
+            }
+            
+            window.location.replace(redirect);
         }
     </script>
 </head>
 <body>
-    <p>Redirecting...</p>
+    <p>Redirecting to Prexis Turbines...</p>
 </body>
 </html>

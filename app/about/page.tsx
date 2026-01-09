@@ -227,7 +227,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <Image
-                src="/Logo.png"
+                src={withBasePath('/Logo.png')}
                 alt="Prexis Turbines"
                 width={180}
                 height={60}
