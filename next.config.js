@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',  // ← CRITICAL for static hosting
   images: {
-    domains: ['localhost', 'cardinal117.github.io'],
-    unoptimized: true,
+    unoptimized: true,  // Required for static export
   },
-  output: 'export',
-  trailingSlash: true,
+  trailingSlash: true,  // Helps with routing
 }
 
 module.exports = nextConfig
